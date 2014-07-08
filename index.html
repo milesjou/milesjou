@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+	<script src="jquery.DataSaver.js"></script>
+</head>
+<body>
+
+	<div data-role="page" id="home">
+		<div data-role="header" id="header">
+			<a href="#config" class="ui-btn-right">設置</a>
+		</div>
+		<div data-role="content">
+			
+		</div>
+	</div>
+
+	<div data-role="page" id="config">
+		<div data-role="header" id="header">
+			<h1>減肥ＧＯ～</h1>
+		</div>
+
+		<div data-role="content">
+			<h3>設定基本資料</h3>
+			
+			<form id="example_form" method="post">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>性別 :</legend>
+					<label>男性
+					<input type="radio" name="sex" id="sex" class="save" value="male" required />
+					</label>
+					<label>女性
+					<input type="radio" name="sex" id="sex" class="save" value="female" />
+					</label>
+				</fieldset>
+
+				<legend>年齡 :</legend>
+				<input id="age" name="age" type="text" oninvalid="setCustomValidity('請輸入年齡');" oninput="setCustomValidity('');" class="save" required />
+				
+				<legend>身高 :</legend>
+				<input id="height" name="height" type="text" class="save" placeholder="cm" oninvalid="setCustomValidity('請輸入身高');" oninput="setCustomValidity('');" required />
+				
+				<legend>體重 :</legend>
+				<input id="weight" name="weight" type="text" class="save" placeholder="kg" oninvalid="setCustomValidity('請輸入體重');" oninput="setCustomValidity('');" required />
+				
+				<legend>目標體重 :</legend>
+				<input id="weight-goal" name="weight-goal" type="text" class="save" placeholder="kg" oninvalid="setCustomValidity('請輸入目標體重');" oninput="setCustomValidity('');" required />
+				
+				<fieldset data-role="controlgroup" data-mini="true">
+					<legend>主頁顯示 :</legend>
+					<label>與目標距離
+					<input type="radio" name="show-index" id="show" class="save" value="distance" />
+					</label>
+					<label>現在體重
+					<input type="radio" name="show-index" id="show" class="save" value="now" />
+					</label>
+					<label>目標體重
+					<input type="radio" name="show-index" id="show" class="save" value="goal" />
+					</label>
+				</fieldset>
+				
+				<input type="submit" value="確定" />
+			</form>
+
+		</div>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(document).on("DataSaver_start DataSaver_stop DataSaver_save DataSaver_load DataSaver_remove", function(e) {
+					console.log(e.type);
+				});
+
+				//Save data for fields with class "save"
+				$("#example_form .save").DataSaver({ events: "change keyup" });
+			
+
+			});
+    	</script>
+
+	</div>
+
+</body>
+</html>
